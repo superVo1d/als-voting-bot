@@ -66,6 +66,7 @@ def get_voting_options():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     await application.initialize()
+    setup_handlers()
     await application.start()
 
     webhook_url = f"{WEBHOOK_URL}/{BOT_TOKEN}"
@@ -87,8 +88,6 @@ async def hello(request: Request):
 async def webhook(request: Request):
     data = await request.json()
     update = Update.de_json(data, application.bot)
-
-    setup_handlers()
 
     await application.process_update(update)
     return {"status": "ok"}

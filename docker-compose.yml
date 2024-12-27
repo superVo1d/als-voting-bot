@@ -9,7 +9,6 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
-      - ./requirements.txt:/app/requirements.txt
     environment:
       BOT_TOKEN: "${BOT_TOKEN}"
       WEBHOOK_URL: "${WEBHOOK_URL}"
